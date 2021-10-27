@@ -1,0 +1,8 @@
+# ignore all files in the data folder
+data/*
+
+# ignore the jupyter checkpoints
+.ipynb_checkpoints/*
+
+# ignore DS_Store
+.DS_Store
