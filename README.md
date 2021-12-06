@@ -19,18 +19,16 @@ This folder contains the following:
   - NB3-Model_Setup_and_Evaluation.ipynb
   - Numerous pkl files, of fitted models and grid searches
 - 1 folder titled "data" which contains the following:
-    - business.json
     - ma_restaurant.csv
     - ma_review.csv
     - review_data_cleaned.csv
-    - review.json
 
 Please execute the code in the Jupyter notebooks in the 'notebooks' folder, in the following sequence:
 - NB1-Project_Intro_and_Data_Loading.ipynb
 - NB2-Data_Cleaning_EDA_Feature_Engineering.ipynb
 - NB3-Model_Setup_and_Evaluation.ipynb
 
-Note while NB1-Project_Intro_and_Data_Loading must be read, running the code is optional and potentially time consuming since it only involves loading the data from the original Yelp dataset JSON files into CSV files, while filtering for restaruants in the state of Massachusetts and their associated reviews. The reviews JSON file is 6.94 GB.
+Note while NB1-Project_Intro_and_Data_Loading.ipynb must be read, the code will not run as it loads data from the original JSON files from the Yelp website which are very large in size (~7GB). The resulting filtered datasets that were written at the end of Project_Intro_and_Data_Loading.ipynb are included in the data folder, allowing the code in NB2-Data_Cleaning_EDA_Feature_Engineering.ipynb and NB3-Model_Setup_and_Evaluation.ipynb to be run.
 
 For questions, please feel free to contact me at allistair.cota@gmail.com.
 
