@@ -23,7 +23,7 @@ This folder contains the following:
     - ma_review.csv
     - review_data_cleaned.csv
 
-Please execute the code in the Jupyter notebooks in the 'notebooks' folder, in the following sequence:
+Please open the Jupyter notebooks in the 'notebooks' folder, in the following sequence:
 - NB1-Project_Intro_and_Data_Loading.ipynb
 - NB2-Data_Cleaning_EDA_Feature_Engineering.ipynb
 - NB3-Model_Setup_and_Evaluation.ipynb
