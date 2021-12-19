@@ -23,8 +23,8 @@ from utils import tokenizer_stemming, convert_to_array
 
 ENGLISH_STOP_WORDS = stopwords.words('english')
 
-X_train = pd.read_csv('../data/X_train.csv')
-y_train = pd.read_csv('../data/y_train.csv')
+X_train = pd.read_csv('X_train.csv')
+y_train = pd.read_csv('y_train.csv')
 numeric_columns = X_train.dtypes[X_train.dtypes != 'object'].index.to_list()
 
 tfidf_stem_ct = ColumnTransformer([
