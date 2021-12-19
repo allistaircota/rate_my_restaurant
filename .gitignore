@@ -3,5 +3,7 @@
 
 notebooks/.ipynb_checkpoints/*
 
+data/*
+
 # ignore DS_Store
 .DS_Store
