@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+  <link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  
+    <link href='https://fonts.googleapis.com/css?family=Arvo' rel='stylesheet'>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+</head>
+
+
+<style>
+
+h1 {
+    font-family: 'Arvo'; font-size: 36px; font-weight: bold;  text-align: center
+}
+body { 
+  display : block; margin: 40px; margin-left: 10px; margin-right: 10px; background-color: #FDF8D5;}
+
+@media screen and (max-width: 5000px) and (min-width: 950px) {
+  body {
+   margin-left: 30%; margin-right: 30%;
+   
+  }
+}
+
+
+.checked {
+  color: orange;
+}
+
+</style>
+
+<body>
+
+<h1>Rate My Restaurant</h1>
+
+<br>
+
+{% if rounded_prediction %}
+
+{% for i in range(rounded_prediction) %}
+  <span class="fa fa-star checked"></span>
+{% endfor %}
+
+{% for i in range(5 - rounded_prediction) %}
+  <span class="fa fa-star"></span>
+{% endfor %}
+<p><b>Your predicted rating is {{rounded_prediction}} stars.</b></p>
+<br>
+<hr>
+{% endif %}
+
+
+<p>Rate My Restaurant uses Natural Language Processing and Machine Learning to predict restaurant
+  Yelp review ratings. The model is trained on restaurants in the state of Massachusetts, using data from
+ the <a href="https://www.yelp.com/dataset" target="_blank">Yelp Open Dataset</a>.</p>
+<p>Enter the following details about your restaurant. When finished, hit the Predict button to view your predicted Yelp rating.</p>
+<p>If you are unsure what values to fill in, view the Yelp pages of restaurants similar to yours to get an idea of what to enter.</p>
+<hr>
+
+<form action='/predict' method="POST">
+  <h4>Restaurant Information</h4>
+  <div class="form-group">
+    <label for="latitude">Latitude</label>
+    <input class="form-control" id="latitude" name="latitude" placeholder="Enter latitude coordinates in degrees.">
+  </div>
+
+  <div class="form-group">
+    <label for="longitude">Longitude</label>
+    <input class="form-control" id="longitude" name="longitude" placeholder="Enter longitude coordinates in degrees.">
+  </div>
+
+  <div class="form-group">
+    <label for="number_of_branches">Number of branches (enter 1 if you have only 1 location)</label>
+    <input class="form-control" id="number_of_branches" name="number_of_branches">
+  </div>
+
+  <div class="form-group">
+    <label for="reviews_per_week">Expected reviews per week (if unsure, enter the median value of 0.6).</label>
+    <input class="form-control" id="reviews_per_week" name="reviews_per_week">
+  </div>
+
+  <div class="form-group">
+    <label for="RestaurantsGoodForGroups">Is your restaurant good for groups?</label>
+    <select class="form-control" id="RestaurantsGoodForGroups" name="RestaurantsGoodForGroups">
+      <option value="1">Yes</option>
+      <option value="0">No</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="HasTV">Does your restaurant have TV displays?</label>
+    <select class="form-control" id="HasTV" name="HasTV">
+      <option value="1">Yes</option>
+      <option value="0">No</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="GoodForKids">Is your restaurant good for kids?</label>
+    <select class="form-control" id="GoodForKids" name="GoodForKids">
+      <option value="1">Yes</option>
+      <option value="0">No</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="RestaurantsTakeOut">Do you offer take out?</label>
+    <select class="form-control" id="RestaurantsTakeOut" name="RestaurantsTakeOut">
+      <option value="1">Yes</option>
+      <option value="0">No</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="RestaurantsPriceRange2">Price Range</label>
+    <select class="form-control" id="RestaurantsPriceRange2" name="RestaurantsPriceRange2">
+      <option value="1">$</option>
+      <option value="2">$$</option>
+      <option value="3">$$$</option>
+      <option value="4">$$$$</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="RestaurantsReservations">Do you take reservations?</label>
+    <select class="form-control" id="RestaurantsReservations" name="RestaurantsReservations">
+      <option value="1">Yes</option>
+      <option value="0">No</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="RestaurantsDelivery">Do you deliver?</label>
+    <select class="form-control" id="RestaurantsDelivery" name="RestaurantsDelivery">
+      <option value="1">Yes</option>
+      <option value="0">No</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="OutdoorSeating">Do you offer outdoor seating?</label>
+    <select class="form-control" id="OutdoorSeating" name="OutdoorSeating">
+      <option value="1">Yes</option>
+      <option value="0">No</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="NoiseLevel">Rate your noise level.</label>
+    <select class="form-control" id="NoiseLevel" name="NoiseLevel">
+      <option value="1">Quiet</option>
+      <option value="2">Average</option>
+      <option value="3">Loud</option>
+      <option value="4">Very Loud</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="BusinessAcceptsCreditCards">Do you accept credit card?</label>
+    <select class="form-control" id="OutdoorSeating" name="BusinessAcceptsCreditCards">
+      <option value="1">Yes</option>
+      <option value="0">No</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="RestaurantsAttire">Describe your restaurant dress code.</label>
+    <select class="form-control" id="RestaurantsAttire" name="RestaurantsAttire">
+      <option value="casual">Casual</option>
+      <option value="dressy">Dressy</option>
+      <option value="formal">Formal</option>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label for="Alcohol">Select your restaurant's alcohol options.</label>
+    <select class="form-control" id="Alcohol" name="Alcohol">
+      <option value="none">None</option>
+      <option value="beer_and_wine">Beer and Wine</option>
+      <option value="full_bar">Full Bar</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="WiFi">Select your restaurant's WiFi options.</label>
+    <select class="form-control" id="WiFi" name="WiFi">
+      <option value="free">Free</option>
+      <option value="paid">Paid</option>
+      <option value="no">None</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="category">Pick the categories your restaurant belongs to. Use the Ctrl or cmd button to select multiple categories.</label>
+    <select multiple class="form-control" id="category" name="category">
+      <option>Sandwiches</option>
+      <option>Pizza</option>
+      <option>Bars</option>
+      <option>American (Traditional)</option>
+      <option>American (New)</option>
+      <option>Italian</option>
+      <option>Breakfast & Brunch</option>
+      <option>Coffee & Tea</option>
+      <option>Chinese</option>
+      <option>Seafood</option>
+      <option>Burgers</option>
+      <option>Fast Food</option>
+      <option>Salad</option>
+      <option>Cafes</option>
+      <option>Mexican</option>
+      <option>Bakeries</option>
+      <option>Japanese</option>
+      <option>Delis</option>
+      <option>Specialty Food</option>
+    </select>
+  </div>
+
+  <hr>
+
+  <h4>Review Information</h4>
+    <div class="form-group">
+      <label for="review_date">Date of review</label>
+      <input type="datetime-local" id="review_date" value="2022-06-12T19:30" name="review_date">
+    </div>
+
+
+  <div class="form-group">
+    <label for="text">Enter the review:</label>
+    <textarea class="form-control" id="text" name="text" rows="3"></textarea>
+  </div>
+
+  <hr>
+
+  <button type="submit" class="btn btn-primary">Predict</button>
+
+</form>
+
+<!-- <br>
+{{types}}
+
+<br>
+<br>
+{{columns}}
+<br>
+<br>
+{{values}}
+<br>
+<br>
+{{pred}}
+<br>
+<br>
+{{date}}
+<br>
+<br>
+{{datetype}}
+<br>
+<br> -->
+
+
+
+
+</body>
+
+
+</html>
