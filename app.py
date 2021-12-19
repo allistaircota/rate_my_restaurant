@@ -8,10 +8,10 @@ from datetime import datetime
 import string
 
 import nltk
-nltk.download('stopwords')
-nltk.download('wordnet')
+# nltk.download('stopwords')
+# nltk.download('wordnet')
 from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer, WordNetLemmatizer
+from nltk.stem import PorterStemmer#, WordNetLemmatizer
 
 from scipy.sparse import csr_matrix
 
