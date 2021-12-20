@@ -40,6 +40,8 @@ Files related to web app:
 - X_train.csv (created in NB3-Modelling.ipynb)
 - y_train.csv (created in NB3-Modelling.ipynb)
 
+The web app is hosted on Heroku and can be visited here: http://rate-my-restaurant-app.herokuapp.com/.
+
 To run the app on your local machine, type `flask run` into command line from the repo directory. 
 
 For questions, please feel free to contact me at allistair.cota@gmail.com.
