@@ -8,6 +8,9 @@ This is the repository for my capstone project for BrainStation's Data Science B
 
 The focus of this project was to build a regression model that can predict restaurant review ratings.
 
+### Technical Summary
+Refer to Capstone Final Report.pdf for a brief technical summary of the project.
+
 ### Jupyter Notebooks
 Files related to Jupyter notebooks:
 - notebook-requirements.txt file that lists all the required packages for the project environment.
